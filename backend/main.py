@@ -29,8 +29,14 @@ def get_client():
         _client = OpenAI(api_key=key)
     return _client
 
-chunks = build_chunks(ARTICLES)
-vector_store = VectorStore(chunks)
+_vector_store = None
+
+def get_vector_store():
+    global _vector_store
+    if _vector_store is None:
+        chunks = build_chunks(ARTICLES)
+        _vector_store = VectorStore(chunks)
+    return _vector_store
 
 class QueryRequest(BaseModel):
     question: str
@@ -91,7 +97,7 @@ Respond in the required JSON format."""
 
 @app.post("/chat")
 def chat(req: QueryRequest):
-    results = vector_store.search(req.question, top_k=3)
+    results = get_vector_store().search(req.question, top_k=3)
 
     if escalate_unlikely(results):
         avg_score = sum(r["score"] for r in results) / len(results)
