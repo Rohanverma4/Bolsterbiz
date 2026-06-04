@@ -59,7 +59,8 @@ export default function App() {
     setMessages(prev => [...prev, { role: 'user', text: q }])
     setLoading(true)
     try {
-      const res = await fetch('/chat', {
+      const base = import.meta.env.VITE_API_URL || ''
+      const res = await fetch(`${base}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: q }),
