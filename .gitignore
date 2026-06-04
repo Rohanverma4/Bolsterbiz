@@ -7,3 +7,6 @@ __pycache__/
 .env
 *.egg-info/
 .DS_Store
+.vscode/
+.vercel/
+

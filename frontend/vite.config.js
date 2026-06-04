@@ -9,7 +9,4 @@ export default defineConfig({
       '/health': 'http://localhost:8000',
     },
   },
-  define: {
-    'import.meta.env.VITE_API_URL': JSON.stringify(process.env.VITE_API_URL || ''),
-  },
 })
