@@ -1,0 +1,5 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #111827; color: #f9fafb; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
